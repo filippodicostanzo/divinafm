@@ -1,3 +1,4 @@
+import 'package:divinafm/app/bottom.dart';
 import 'package:divinafm/theme/color_manager.dart';
 import 'package:divinafm/theme/font_manager.dart';
 import 'package:flutter/material.dart';
@@ -58,18 +59,9 @@ class _MyHomePageState extends State<MyHomePage> {
     // fast, so that you can just rebuild anything that needs updating rather
     // than having to individually change instances of widgets.
     return MaterialApp(
-        title: 'Divina Fm',
-        theme: getApplicationTheme(),
-        home: Scaffold(
-          body: Container(
-              child: Center(
-            child: Text('DIVINA FM',
-                style: TextStyle(
-                    fontWeight: FontWeightManager.bold,
-                    fontSize: FontSize.s18,
-                    color: ColorManager.primary,
-                    fontFamily: FontConstants.fontFamily)),
-          )),
-        ));
+      title: 'Divina Fm',
+      theme: getApplicationTheme(),
+      home: Scaffold(body: const Bottom()),
+    );
   }
 }
