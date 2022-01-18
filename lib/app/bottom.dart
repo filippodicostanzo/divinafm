@@ -1,3 +1,4 @@
+import 'package:divinafm/tabs/player.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../tabs/home.dart';
@@ -14,7 +15,7 @@ class _BottomState extends State<Bottom> {
 
   final List<Widget> _widgetOptions = <Widget>[
     Home(),
-    Home(),
+    Player(),
     Home(),
     Home(),
     Home(),

@@ -38,6 +38,9 @@ dependencies:
   http: ^0.13.4
   html: ^0.15.0
   flutter_spinkit: ^5.1.0
+  just_audio: ^0.9.18
+  audio_service: ^0.18.3
+  audio_session: ^0.1.6+1
 
 dev_dependencies:
   flutter_test:
