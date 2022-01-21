@@ -1,3 +1,4 @@
+import 'package:divinafm/tabs/infinity.dart';
 import 'package:divinafm/tabs/player.dart';
 import 'package:divinafm/tabs/sliver.dart';
 import 'package:flutter/material.dart';
@@ -15,11 +16,11 @@ class _BottomState extends State<Bottom> {
   int _selectedIndex = 2;
 
   final List<Widget> _widgetOptions = <Widget>[
-    Home(),
-    Home(),
+    Infinity(),
     Player(),
     Home(),
-    Sliver(),
+    Home(),
+    Home(),
   ];
 
   @override
@@ -53,38 +54,38 @@ class _BottomState extends State<Bottom> {
               items: const <BottomNavigationBarItem>[
                 BottomNavigationBarItem(
                   icon: Icon(
-                    FontAwesomeIcons.users,
+                    FontAwesomeIcons.headphonesAlt,
                     size: 25.0,
                   ),
                   label: "person_outline",
                 ),
                 BottomNavigationBarItem(
                   icon: Icon(
-                    Icons.pin_drop,
-                    size: 30.0,
-                  ),
-                  label: "home_filled",
-                ),
-                BottomNavigationBarItem(
-                  icon: Icon(
-                    Icons.home_filled,
-                    size: 30.0,
-                  ),
-                  label: "home_filled",
-                ),
-                BottomNavigationBarItem(
-                  icon: Icon(
-                    Icons.workspaces_outline,
-                    size: 30.0,
-                  ),
-                  label: "grid_view",
-                ),
-                BottomNavigationBarItem(
-                  icon: Icon(
-                    FontAwesomeIcons.heart,
+                    FontAwesomeIcons.playCircle,
                     size: 25.0,
                   ),
-                  label: "grid_view",
+                  label: "playcircle",
+                ),
+                BottomNavigationBarItem(
+                  icon: Icon(
+                    FontAwesomeIcons.newspaper,
+                    size: 25.0,
+                  ),
+                  label: "newspaper",
+                ),
+                BottomNavigationBarItem(
+                  icon: Icon(
+                    FontAwesomeIcons.calendarAlt,
+                    size: 25.0,
+                  ),
+                  label: "events",
+                ),
+                BottomNavigationBarItem(
+                  icon: Icon(
+                    FontAwesomeIcons.at,
+                    size: 25.0,
+                  ),
+                  label: "contacts",
                 ),
               ],
               currentIndex: _selectedIndex,
