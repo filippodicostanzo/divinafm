@@ -2,6 +2,9 @@ import 'package:divinafm/app/bottom.dart';
 import 'package:divinafm/theme/color_manager.dart';
 import 'package:divinafm/theme/font_manager.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import '../enums/connectivy_status.dart';
+import '../services/connectivity_service.dart';
 import '../theme/theme_manager.dart';
 
 class MyApp extends StatelessWidget {
@@ -52,16 +55,20 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    // This method is rerun every time setState is called, for instance as done
-    // by the _incrementCounter method above.
-    //
-    // The Flutter framework has been optimized to make rerunning build methods
-    // fast, so that you can just rebuild anything that needs updating rather
-    // than having to individually change instances of widgets.
-    return MaterialApp(
-      title: 'Divina Fm',
-      theme: getApplicationTheme(),
-      home: Scaffold(body: const Bottom()),
-    );
+    return StreamProvider<ConnectivityStatus>(
+        initialData: ConnectivityStatus.wifi,
+        create: (context) =>
+            ConnectivityService().connectionStatusController.stream,
+        // This method is rerun every time setState is called, for instance as done
+        // by the _incrementCounter method above.
+        //
+        // The Flutter framework has been optimized to make rerunning build methods
+        // fast, so that you can just rebuild anything that needs updating rather
+        // than having to individually change instances of widgets.
+        child: MaterialApp(
+          title: 'Divina Fm',
+          theme: getApplicationTheme(),
+          home: Scaffold(body: const Bottom()),
+        ));
   }
 }

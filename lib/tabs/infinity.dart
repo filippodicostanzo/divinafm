@@ -1,8 +1,10 @@
 import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-
+import 'package:provider/provider.dart';
+import '../enums/connectivy_status.dart';
 import '../theme/color_manager.dart';
 
 class Infinity extends StatefulWidget {
@@ -23,19 +25,21 @@ class _InfinityState extends State<Infinity> {
   void initState() {
     // TODO: implement initState
     super.initState();
-
-    fetch();
-    _scrollController.addListener(() {
-      if (_scrollController.position.pixels ==
-          _scrollController.position.maxScrollExtent) {
-        if (_page < 10) {
-          setState(() {
-            _page = _page + 1;
-          });
-          fetch();
+    var _connect = Provider.of<ConnectivityStatus>(context, listen: false);
+    if (_connect.toString() != 'ConnectivityStatus.offline') {
+      fetch();
+      _scrollController.addListener(() {
+        if (_scrollController.position.pixels ==
+            _scrollController.position.maxScrollExtent) {
+          if (_page < 10) {
+            setState(() {
+              _page = _page + 1;
+            });
+            fetch();
+          }
         }
-      }
-    });
+      });
+    }
   }
 
   void dispose() {
@@ -46,23 +50,28 @@ class _InfinityState extends State<Infinity> {
 
   @override
   Widget build(BuildContext context) {
+    var connect = Provider.of<ConnectivityStatus>(context);
     return Scaffold(
-      body: _loading == false
-          ? ListView.builder(
-              controller: _scrollController,
-              itemCount: dogImages.length,
-              itemBuilder: (BuildContext context, int index) {
-                return Container(
-                  constraints: BoxConstraints.tightFor(height: 150),
-                  child: Text(dogImages[index]['title']['rendered']),
-                );
-              },
+      body: connect.toString() == 'ConnectivityStatus.offline'
+          ? Center(
+              child: Text('No Connection'),
             )
-          : Center(
-              child: CircularProgressIndicator(
-                color: ColorManager.primary,
-              ),
-            ),
+          : _loading == false
+              ? ListView.builder(
+                  controller: _scrollController,
+                  itemCount: dogImages.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    return Container(
+                      constraints: BoxConstraints.tightFor(height: 150),
+                      child: Text(dogImages[index]['title']['rendered']),
+                    );
+                  },
+                )
+              : Center(
+                  child: CircularProgressIndicator(
+                    color: ColorManager.primary,
+                  ),
+                ),
     );
   }
 
